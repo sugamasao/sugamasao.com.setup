@@ -29,13 +29,13 @@ Host host_name
 
 ### サーバに一般ユーザを作成する
 
-rootユーザで作業するのはイマイチなので、一般ユーザを作成する
+- rootユーザで作業するのはイマイチなので、一般ユーザを作成する(config/user.jsonに記載)
+- 途中で作成する一般ユーザのパスワードを入力させるので、そこでパスワードとSALTを入力する
 
 ```sh
 $ bundle exec itamae ssh -h host_name --node-json=config/user.json bootstrap.rb
 ```
 
-途中で作成する一般ユーザのパスワードを入力させるので、そこで入力する必要がある
 
 設定が終わったら、一般ユーザでsshログインできるようにしておくため、`~/.ssh/config` の設定を一般ユーザに変更しておく。
 
@@ -60,7 +60,7 @@ $ bundle exec itamae ssh -h host_name --node-json=config/base.json bootstrap.rb
 
 ### nginxの設定
 
-nginxは単にリダイレクトさせるだけ
+- nginxは単にリダイレクトさせるだけ
 
 ```sh
 $ bundle exec itamae ssh -h host_name --node-json=config/web.json bootstrap.rb
@@ -68,12 +68,13 @@ $ bundle exec itamae ssh -h host_name --node-json=config/web.json bootstrap.rb
 
 ### mackerelの設定
 
-https://mackerel.io/ にアカウントとAPI KEYがあること
+- https://mackerel.io/ にアカウントとAPI KEYがあること
+- 途中でAPI KEYを入力するプロンプトが表示されるので、そこで入力する
 
 ```sh
 $ bundle exec itamae ssh -h host_name --node-json=config/mackerel.json bootstrap.rb
 ```
 
-途中でAPI KEYを入力するプロンプトが表示されるので、そこで入力する
 
 TODO: いまはAPI KEYのキーがあれば更新しないので、値が変わった場合に更新されない
+
