@@ -20,8 +20,7 @@ end
   end
 end
 
-template '/etc/nginx/sites-enabled/001-redirect' do
-end
+template '/etc/nginx/sites-enabled/001-redirect'
 
 service 'nginx' do
   action :reload
