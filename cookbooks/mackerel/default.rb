@@ -12,6 +12,11 @@ execute 'add mackerel api-key' do
   not_if 'grep -q -i ^apikey /etc/mackerel-agent/mackerel-agent.conf'
 end
 
+execute 'add mackerel role' do
+  command %Q!echo 'roles = [ "#{node['mackerel_role']}" ]' >>  /etc/mackerel-agent/mackerel-agent.conf!
+  not_if 'grep -q -i ^roles /etc/mackerel-agent/mackerel-agent.conf'
+end
+
 execute 'add mackerel file blob' do
   command %q!echo 'include = "/etc/mackerel-agent/conf.d/*.conf"' >> /etc/mackerel-agent/mackerel-agent.conf!
   not_if 'grep -q -i ^include /etc/mackerel-agent/mackerel-agent.conf'
