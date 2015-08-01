@@ -4,8 +4,8 @@ require 'unix_crypt'
 user 'create user' do
   username node[:user]
   password node[:password] || UnixCrypt::SHA512.build(
-    ask("Enter #{ node[:user] } password:  ") { |q| q.echo = 'x' },
-    ask("Encrypt Salt:  ")
+    ask("Enter #{ node[:user] } password: ") { |q| q.echo = 'x' },
+    ask("Encrypt Salt: ")
   )
   home "/home/#{ node[:user] }"
   create_home true
