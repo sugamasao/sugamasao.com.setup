@@ -12,6 +12,13 @@ execute 'add mackerel api-key' do
   not_if 'grep -q -i ^apikey /etc/mackerel-agent/mackerel-agent.conf'
 end
 
+execute 'add mackerel file blob' do
+  command %q!echo 'include = "/etc/mackerel-agent/conf.d/*.conf"' >> /etc/mackerel-agent/mackerel-agent.conf!
+  not_if 'grep -q -i ^include /etc/mackerel-agent/mackerel-agent.conf'
+end
+
+directory '/etc/mackerel-agent/conf.d/'
+
 execute 'wakeup mackerel' do
   command 'sudo /etc/init.d/mackerel-agent start'
   not_if 'test -f /var/run/mackerel-agent.pid'

@@ -64,10 +64,12 @@ $ bundle exec itamae ssh -h host_name --node-json=config/web.json bootstrap.rb
 
 ### 監視の設定
 
-https://mackerel.io/ にアカウントとAPI Keyがあること
+https://mackerel.io/ にアカウントとAPI KEYがあること
 
 ```sh
 $ bundle exec itamae ssh -h host_name --node-json=config/mackerel.json bootstrap.rb
 ```
 
-途中でAPI Keyを入力するプロンプトが表示されるので、そこで入力する
+途中でAPI KEYを入力するプロンプトが表示されるので、そこで入力する
+
+TODO: いまはAPI KEYのキーがあれば更新しないので、値が変わった場合に更新されない
